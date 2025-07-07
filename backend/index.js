@@ -82,13 +82,12 @@ app.put("/transactions/:id", async (req, res) => {
   }
 });
 
-
 //GET/Example
 app.get("/", (req, res) => {
   res.send("This is my server");
 });
 
 // Start the server
-app.listen(5000, (req, res) => {
+app.listen("*", (req, res) => {
   console.log(`🚀 Server running at http://localhost:5000`);
 });

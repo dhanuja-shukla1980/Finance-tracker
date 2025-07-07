@@ -10,31 +10,8 @@ function App() {
   const [transactions, setTransactions] = useState(
     JSON.parse(localStorage.getItem("transactions")) || []
   );
-
-  // Using localStorage to persist transactions
-
-  // useEffect(() => {
-  // localStorage.setItem("transactions", JSON.stringify(transactions));
-  // }, [transactions]);
-
-  // const addTransaction = (transaction) => {
-  //   setTransactions([{ ...transaction, id: Date.now() }, ...transactions]);
-  // };
-
-  // const deleteTransaction = (id) => {
-  //   setTransactions(transactions.filter((t) => t.id !== id));
-  // };
-
-  // const editTransaction = (id, updatedTransaction) => {
-  //   setTransactions(
-  //     transactions.map((t) => (t.id === id ? { ...updatedTransaction, id } : t))
-  //   );
-  // };\
-
-  // Using fetch to get transactions from the backend
-
-  useEffect(() => {
-    fetch("http://localhost:5000/transactions")
+useEffect(() => {
+    fetch("https://finance-tracker-3b5t.onrender.com/transactions")
       .then((res) => res.json())
       .then((data) => {
         setTransactions(data);
@@ -46,7 +23,7 @@ function App() {
 
   const addTransaction = async (tx) => {
     try {
-      const res = await fetch("http://localhost:5000/transactions", {
+      const res = await fetch("https://finance-tracker-3b5t.onrender.com/transactions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(tx),
@@ -61,7 +38,7 @@ function App() {
 
   const deleteTransaction = async (_id) => {
     try {
-      await fetch(`http://localhost:5000/transactions/${_id}`, {
+      await fetch(`https://finance-tracker-3b5t.onrender.com/transactions/${_id}`, {
         method: "DELETE",
       });
 
@@ -73,7 +50,7 @@ function App() {
 
   const editTransaction = async (_id, tx) => {
     try {
-      await fetch(`http://localhost:5000/transactions/${_id}`, {
+      await fetch(`https://finance-tracker-3b5t.onrender.com/transactions/${_id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(tx),
